@@ -6,7 +6,7 @@ scopes = [
      "https://www.googleapis.com/auth/drive"
          ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name("D:\\project 1\\secret_key.json", scopes=scopes)
+creds = ServiceAccountCredentials.from_json_keyfile_name("secret_key.json", scopes=scopes)
 
 
 file = gspread.authorize(creds)
