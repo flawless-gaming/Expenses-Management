@@ -47,7 +47,7 @@ mode_button = Button(app, image = daymode, bd='0',
                      command = mode )
 mode_button.place(x=10,y=5)
 
-header = Label(app,text="Login",font=(" Helvetica",25,"bold"),
+header = Label(app,text="Login",font=(" Times New Roman",25,"bold"),
                bg="#0e1111",fg="#FAF9F6")
 user = Entry(app,border=0,bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
 user.insert(0,"Username")
@@ -63,14 +63,21 @@ gender = [
 clicked=StringVar()
 clicked.set("Gender")
 drop = OptionMenu(app,clicked,*gender)
-drop.config(border=0,bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",10,"bold"))
+drop.config(border=0,bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+drop["menu"].config(border=0,bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+age = Label(app,text="Age",bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+spinbox = Spinbox(app, from_=0, to=100, width=5, relief="sunken", repeatdelay=500, repeatinterval=100,
+                     bg="#0e1111",fg="#FAF9F6",font=("Microsoft YaHei UI Light",13,"bold"))
+# Setting options for the Spinbox
+spinbox.config(state="normal", cursor="hand2", bd=3, justify="center", wrap=True,buttonbackground="#0e1111",buttoncursor="hand2")
+login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
 
-
-header.place(x=275,y=20)
+header.place(x=275,y=30)
 user.place(x=220,y=100)
 drop.place(x=240,y=140)
-
-
+age.place(x=220,y=190)
+spinbox.place(x=280,y=190,)
+login.place(x=220,y=240,width=180)
 
 #to generate the application
 app.mainloop()
