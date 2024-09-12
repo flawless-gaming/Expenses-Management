@@ -29,22 +29,22 @@ def mode():
         app.config(bg="#FAF9F6")#window colour
         header.config(bg="#FAF9F6",fg="#030f1e")
         user.config(bg="#FAF9F6",fg="#030f1e")
-        drop.config(bg="#FAF9F6",fg="#030f1e")
-        drop["menu"].config(bg="#FAF9F6",fg="#030f1e")
-        age.config(bg="#FAF9F6",fg="#030f1e")
-        spinbox.config(bg="#FAF9F6",fg="#030f1e",buttonbackground="#FAF9F6")
         underline.config(bg="#030f1e")
+        pswd.config(bg="#FAF9F6",fg="#030f1e")
+        underline2.config(bg="#030f1e")
+        conf_pswd.config(bg="#FAF9F6",fg="#030f1e")
+        underline3.config(bg="#030f1e")
         screenmode = False
     else:
         mode_button.config(image = daymode)
         app.config(bg="#030f1e")#window colour
         header.config(bg="#030f1e",fg="#FAF9F6")
         user.config(bg="#030f1e",fg="#FAF9F6")
-        drop.config(bg="#030f1e",fg="#FAF9F6")
-        drop["menu"].config(bg="#030f1e",fg="#FAF9F6")
-        age.config(bg="#030f1e",fg="#FAF9F6")
-        spinbox.config(bg="#030f1e",fg="#FAF9F6",buttonbackground="#030f1e")
         underline.config(bg="#FAF9F6")
+        pswd.config(bg="#030f1e",fg="#FAF9F6")
+        underline2.config(bg="#FAF9F6")
+        conf_pswd.config(bg="#030f1e",fg="#FAF9F6")
+        underline3.config(bg="#FAF9F6")
         screenmode = True
 
 def on_enter(e):
@@ -62,6 +62,14 @@ def on_leave_pswd(e):
     name=pswd.get()
     if name == "":
         pswd.insert(0,"Password")
+        
+def on_enter_cpswd(e):
+    conf_pswd.delete(0,'end')
+    
+def on_leave_cpswd(e):
+    name=conf_pswd.get()
+    if name == "":
+        conf_pswd.insert(0,"Confirm Password")
         
 screenmode = True#screenmode set to darkmode
 #screen mode button
@@ -84,14 +92,23 @@ pswd.bind("<FocusIn>", on_enter_pswd)
 pswd.bind("<FocusOut>",on_leave_pswd)
 underline2 = Frame(bg="#FAF9F6",width=250,height=3)
 
+conf_pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+conf_pswd.insert(0,"Confirm Password")
+conf_pswd.bind("<FocusIn>", on_enter_cpswd)
+conf_pswd.bind("<FocusOut>",on_leave_cpswd)
+underline3 = Frame(bg="#FAF9F6",width=250,height=3)
+
 login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
 
 
 header.place(x=355,y=20)
 user.place(x=270,y=100)
-pswd.place(x=270,y=150)
-login.place(x=300,y=240,width=180)
 underline.place(x=270,y=130)
+pswd.place(x=270,y=150)
 underline2.place(x=270,y=180)
+conf_pswd.place(x=270,y=200)
+underline3.place(x=270,y=230)
+login.place(x=300,y=260,width=180)
+
 #to generate the application
 app.mainloop()
