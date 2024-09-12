@@ -54,8 +54,15 @@ def on_leave(e):
     name=user.get()
     if name == "":
         user.insert(0,"Username")
-    
 
+def on_enter_pswd(e):
+    pswd.delete(0,'end')
+    
+def on_leave_pswd(e):
+    name=pswd.get()
+    if name == "":
+        pswd.insert(0,"Password")
+        
 screenmode = True#screenmode set to darkmode
 #screen mode button
 mode_button = Button(app, image = daymode, bd='0',
@@ -69,33 +76,22 @@ user = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Li
 user.insert(0,"Username")
 user.bind("<FocusIn>", on_enter)
 user.bind("<FocusOut>",on_leave)
-
-gender = [
-    "Gender",
-    "Male",
-    "Female",
-    "Not Specified"
-]
-clicked=StringVar()
-clicked.set("Gender")
-drop = OptionMenu(app,clicked,*gender)
-drop.config(border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
-drop["menu"].config(border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
-age = Label(app,text="Age",bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
-spinbox = Spinbox(app, from_=0, to=100, width=5, relief="sunken", repeatdelay=500, repeatinterval=100,
-                     bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",13,"bold"))
-# Setting options for the Spinbox
-spinbox.config(state="normal", cursor="hand2", bd=0, justify="center", wrap=True,buttonbackground="#030f1e",buttoncursor="hand2")
-login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
 underline = Frame(bg="#FAF9F6",width=250,height=3)
+
+pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+pswd.insert(0,"Password")
+pswd.bind("<FocusIn>", on_enter_pswd)
+pswd.bind("<FocusOut>",on_leave_pswd)
+underline2 = Frame(bg="#FAF9F6",width=250,height=3)
+
+login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
+
 
 header.place(x=355,y=20)
 user.place(x=270,y=100)
-drop.place(x=290,y=145)
-age.place(x=270,y=190)
-spinbox.place(x=330,y=193)
+pswd.place(x=270,y=150)
 login.place(x=300,y=240,width=180)
 underline.place(x=270,y=130)
-
+underline2.place(x=270,y=180)
 #to generate the application
 app.mainloop()
