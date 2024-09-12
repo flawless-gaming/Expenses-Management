@@ -13,13 +13,20 @@ app.config(bg="#030f1e")#window colour
 image1 = Image.open("nightmode.png")
 image2 = Image.open("daymode.png")
 image3 = Image.open("login_image.jpg")
+image4 = Image.open("hide_white.png")
+image5 = Image.open("visible_white.png")
 # Resize the image using resize() method
 resize_image1 = image1.resize((75, 25))
 resize_image2 = image2.resize((75, 25))
 resize_image3 = image3.resize((200,300))
+resize_image4 = image4.resize((25, 25))
+resize_image5 = image5.resize((25,25))
 daymode = ImageTk.PhotoImage(resize_image1)
 nightmode = ImageTk.PhotoImage(resize_image2)
 loign_image = ImageTk.PhotoImage(resize_image3)
+hide_white   = ImageTk.PhotoImage(resize_image4)
+visible_white  = ImageTk.PhotoImage(resize_image5)
+
 
 #darkmode and light mode function
 def mode():
@@ -75,7 +82,19 @@ def on_leave_cpswd(e):
         conf_pswd.config(show="")
         conf_pswd.insert(0,"Confirm Password")
         
+def pswd_see():
+    global see
+    if see:
+        see_pswd.config(image=hide_white)
+        pswd.config(show="")
+        see = False
+    else:
+        see_pswd.config(image=visible_white)
+        pswd.config(show="⦿")
+        see = True
+        
 screenmode = True#screenmode set to darkmode
+see = True
 #screen mode button
 mode_button = Button(app, image = daymode, bd='0',
                      command = mode )
@@ -94,6 +113,7 @@ pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Li
 pswd.insert(0,"Password")
 pswd.bind("<FocusIn>", on_enter_pswd)
 pswd.bind("<FocusOut>",on_leave_pswd)
+see_pswd = Button(app,image=visible_white,bg="#030f1e",bd=0,command=pswd_see)
 underline2 = Frame(bg="#FAF9F6",width=250,height=3)
 
 conf_pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
@@ -104,11 +124,11 @@ underline3 = Frame(bg="#FAF9F6",width=250,height=3)
 
 login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
 
-
 header.place(x=355,y=20)
 user.place(x=270,y=100)
 underline.place(x=270,y=130)
 pswd.place(x=270,y=150)
+see_pswd.place(x=525,y=150)
 underline2.place(x=270,y=180)
 conf_pswd.place(x=270,y=200)
 underline3.place(x=270,y=230)
