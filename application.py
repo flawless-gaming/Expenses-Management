@@ -57,18 +57,22 @@ def on_leave(e):
 
 def on_enter_pswd(e):
     pswd.delete(0,'end')
+    pswd.config(show="⦿")
     
 def on_leave_pswd(e):
     name=pswd.get()
     if name == "":
+        pswd.config(show="")
         pswd.insert(0,"Password")
         
 def on_enter_cpswd(e):
     conf_pswd.delete(0,'end')
+    conf_pswd.config(show="⦿")
     
 def on_leave_cpswd(e):
     name=conf_pswd.get()
     if name == "":
+        conf_pswd.config(show="")
         conf_pswd.insert(0,"Confirm Password")
         
 screenmode = True#screenmode set to darkmode
