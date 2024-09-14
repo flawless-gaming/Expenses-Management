@@ -13,8 +13,8 @@ app.config(bg="#030f1e")#window colour
 image1 = Image.open("nightmode.png")
 image2 = Image.open("daymode.png")
 image3 = Image.open("login_image.jpg")
-image4 = Image.open("hide_white.png")
-image5 = Image.open("visible_white.png")
+image4 = Image.open("hide.png")
+image5 = Image.open("visible.png")
 # Resize the image using resize() method
 resize_image1 = image1.resize((75, 25))
 resize_image2 = image2.resize((75, 25))
@@ -24,8 +24,8 @@ resize_image5 = image5.resize((25,25))
 daymode = ImageTk.PhotoImage(resize_image1)
 nightmode = ImageTk.PhotoImage(resize_image2)
 loign_image = ImageTk.PhotoImage(resize_image3)
-hide_white   = ImageTk.PhotoImage(resize_image4)
-visible_white  = ImageTk.PhotoImage(resize_image5)
+hide   = ImageTk.PhotoImage(resize_image4)
+visible  = ImageTk.PhotoImage(resize_image5)
 
 
 #darkmode and light mode function
@@ -38,6 +38,7 @@ def mode():
         user.config(bg="#FAF9F6",fg="#030f1e")
         underline.config(bg="#030f1e")
         pswd.config(bg="#FAF9F6",fg="#030f1e")
+        see_pswd.config(bg="#FAF9F6")
         underline2.config(bg="#030f1e")
         conf_pswd.config(bg="#FAF9F6",fg="#030f1e")
         underline3.config(bg="#030f1e")
@@ -49,6 +50,7 @@ def mode():
         user.config(bg="#030f1e",fg="#FAF9F6")
         underline.config(bg="#FAF9F6")
         pswd.config(bg="#030f1e",fg="#FAF9F6")
+        see_pswd.config(bg="#030f1e")
         underline2.config(bg="#FAF9F6")
         conf_pswd.config(bg="#030f1e",fg="#FAF9F6")
         underline3.config(bg="#FAF9F6")
@@ -85,12 +87,23 @@ def on_leave_cpswd(e):
 def pswd_see():
     global see
     if see:
-        see_pswd.config(image=hide_white)
+        see_pswd.config(image=visible)
         pswd.config(show="")
         see = False
     else:
-        see_pswd.config(image=visible_white)
+        see_pswd.config(image=hide)
         pswd.config(show="⦿")
+        see = True
+
+def confpswd_see():
+    global see
+    if see:
+        see_confpswd.config(image=visible)
+        conf_pswd.config(show="")
+        see = False
+    else:
+        see_confpswd.config(image=hide)
+        conf_pswd.config(show="⦿")
         see = True
         
 screenmode = True#screenmode set to darkmode
@@ -113,13 +126,14 @@ pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Li
 pswd.insert(0,"Password")
 pswd.bind("<FocusIn>", on_enter_pswd)
 pswd.bind("<FocusOut>",on_leave_pswd)
-see_pswd = Button(app,image=visible_white,bg="#030f1e",bd=0,command=pswd_see)
+see_pswd = Button(app,image=hide,bg="#030f1e",bd=0,command=pswd_see)
 underline2 = Frame(bg="#FAF9F6",width=250,height=3)
 
 conf_pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
 conf_pswd.insert(0,"Confirm Password")
 conf_pswd.bind("<FocusIn>", on_enter_cpswd)
 conf_pswd.bind("<FocusOut>",on_leave_cpswd)
+see_confpswd = Button(app,image=hide,bg="#030f1e",bd=0,command=confpswd_see)
 underline3 = Frame(bg="#FAF9F6",width=250,height=3)
 
 login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
@@ -131,6 +145,7 @@ pswd.place(x=270,y=150)
 see_pswd.place(x=525,y=150)
 underline2.place(x=270,y=180)
 conf_pswd.place(x=270,y=200)
+see_confpswd.place(x=525,y=200)
 underline3.place(x=270,y=230)
 login.place(x=300,y=260,width=180)
 
