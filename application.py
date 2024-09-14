@@ -112,6 +112,11 @@ def confpswd_see():
         conf_pswd.config(show="⦿")
         see = True
 
+def glow(e):
+    login.config(bg="#fe00f8")
+def l_normal(e):
+    login.config(bg="#880085")
+
 def colour(e):
     c_acc_button.config(fg="#0096FF")
 def normal(e):
@@ -153,6 +158,8 @@ underline3 = Frame(bg="#FAF9F6",width=250,height=3)
 
 login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",
                font=("serif",13,"bold"),cursor="hand2")
+login.bind("<Enter>",glow)
+login.bind("<Leave>",l_normal)
 
 c_acc = Label(app,text="Don't have an account ?",font=("forte",10),
               bg="#030f1e",fg="#FAF9F6")
