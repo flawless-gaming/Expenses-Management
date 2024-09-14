@@ -41,7 +41,10 @@ def mode():
         see_pswd.config(bg="#FAF9F6")
         underline2.config(bg="#030f1e")
         conf_pswd.config(bg="#FAF9F6",fg="#030f1e")
+        see_confpswd.config(bg="#FAF9F6")
         underline3.config(bg="#030f1e")
+        c_acc.config(bg="#FAF9F6",fg="#030f1e")
+        c_acc_button.config(bg="#FAF9F6")
         screenmode = False
     else:
         mode_button.config(image = daymode)
@@ -53,7 +56,10 @@ def mode():
         see_pswd.config(bg="#030f1e")
         underline2.config(bg="#FAF9F6")
         conf_pswd.config(bg="#030f1e",fg="#FAF9F6")
+        see_confpswd.config(bg="#030f1e")
         underline3.config(bg="#FAF9F6")
+        c_acc.config(bg="#030f1e",fg="#FAF9F6")
+        c_acc_button.config(bg="#030f1e")
         screenmode = True
 
 def on_enter(e):
@@ -105,6 +111,11 @@ def confpswd_see():
         see_confpswd.config(image=hide)
         conf_pswd.config(show="⦿")
         see = True
+
+def colour(e):
+    c_acc_button.config(fg="#0096FF")
+def normal(e):
+    c_acc_button.config(fg="#71797E")
         
 screenmode = True#screenmode set to darkmode
 see = True
@@ -116,27 +127,39 @@ image_label = Label(app,image = loign_image)
 image_label.place(x=30,y=50)
 header = Label(app,text="Login",font=(" Times New Roman",25,"bold"),
                bg="#030f1e",fg="#FAF9F6")
-user = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+user = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",
+             font=("Microsoft YaHei UI Light",14,"bold"))
 user.insert(0,"Username")
 user.bind("<FocusIn>", on_enter)
 user.bind("<FocusOut>",on_leave)
 underline = Frame(bg="#FAF9F6",width=250,height=3)
 
-pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",
+             font=("Microsoft YaHei UI Light",14,"bold"))
 pswd.insert(0,"Password")
 pswd.bind("<FocusIn>", on_enter_pswd)
 pswd.bind("<FocusOut>",on_leave_pswd)
 see_pswd = Button(app,image=hide,bg="#030f1e",bd=0,command=pswd_see)
 underline2 = Frame(bg="#FAF9F6",width=250,height=3)
 
-conf_pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",font=("Microsoft YaHei UI Light",14,"bold"))
+conf_pswd = Entry(app,border=0,bg="#030f1e",fg="#FAF9F6",
+                  font=("Microsoft YaHei UI Light",14,"bold"))
 conf_pswd.insert(0,"Confirm Password")
 conf_pswd.bind("<FocusIn>", on_enter_cpswd)
 conf_pswd.bind("<FocusOut>",on_leave_cpswd)
-see_confpswd = Button(app,image=hide,bg="#030f1e",bd=0,command=confpswd_see)
+see_confpswd = Button(app,image=hide,bg="#030f1e",
+                      bd=0,command=confpswd_see)
 underline3 = Frame(bg="#FAF9F6",width=250,height=3)
 
-login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",font=("serif",13,"bold"))
+login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",
+               font=("serif",13,"bold"),cursor="hand2")
+
+c_acc = Label(app,text="Don't have an account ?",font=("forte",10),
+              bg="#030f1e",fg="#FAF9F6")
+c_acc_button = Button(app,text="Create Account",font=("serif",10,"bold"),
+                      bg="#030f1e",fg="#71797E",bd=0,cursor="hand2")
+c_acc_button.bind("<Enter>",colour)
+c_acc_button.bind("<Leave>",normal)
 
 header.place(x=355,y=20)
 user.place(x=270,y=100)
@@ -147,7 +170,9 @@ underline2.place(x=270,y=180)
 conf_pswd.place(x=270,y=200)
 see_confpswd.place(x=525,y=200)
 underline3.place(x=270,y=230)
-login.place(x=300,y=260,width=180)
+login.place(x=320,y=250,width=180)
+c_acc.place(x=270,y=300)
+c_acc_button.place(x=415,y=298)
 
 #to generate the application
 app.mainloop()
