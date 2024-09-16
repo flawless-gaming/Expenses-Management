@@ -121,6 +121,12 @@ def colour(e):
     c_acc_button.config(fg="#0096FF")
 def normal(e):
     c_acc_button.config(fg="#71797E")
+    
+def login_user():
+    if pswd.get() == conf_pswd.get():
+        messagebox.showinfo("Success", "Login Successful")
+    else:
+        messagebox.showerror("Error", "Passwords do not match")
         
 screenmode = True#screenmode set to darkmode
 see = True
@@ -157,7 +163,7 @@ see_confpswd = Button(app,image=hide,bg="#030f1e",
 underline3 = Frame(bg="#FAF9F6",width=250,height=3)
 
 login = Button(app,text="Log In",bg="#880085",fg="#FAF9F6",
-               font=("serif",13,"bold"),cursor="hand2")
+               font=("serif",13,"bold"),cursor="hand2",command = login_user)
 login.bind("<Enter>",glow)
 login.bind("<Leave>",l_normal)
 
