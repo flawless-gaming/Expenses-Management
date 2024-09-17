@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import create_account
 
 #creating a application window
 app = Tk()
@@ -131,8 +132,7 @@ def login_user():
 screenmode = True#screenmode set to darkmode
 see = True
 #screen mode button
-mode_button = Button(app, image = daymode, bd='0',
-                     command = mode )
+mode_button = Button(app, image = daymode, bd='0',command = mode )
 mode_button.place(x=10,y=5)
 image_label = Label(app,image = loign_image)
 image_label.place(x=30,y=50)
@@ -170,7 +170,8 @@ login.bind("<Leave>",l_normal)
 c_acc = Label(app,text="Don't have an account ?",font=("forte",10),
               bg="#030f1e",fg="#FAF9F6")
 c_acc_button = Button(app,text="Create Account",font=("serif",10,"bold"),
-                      bg="#030f1e",fg="#71797E",bd=0,cursor="hand2")
+                      bg="#030f1e",fg="#71797E",bd=0,cursor="hand2",
+                      command=create_account.create_page)
 c_acc_button.bind("<Enter>",colour)
 c_acc_button.bind("<Leave>",normal)
 
